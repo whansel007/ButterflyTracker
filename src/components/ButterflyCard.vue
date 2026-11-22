@@ -2,21 +2,29 @@
 import { defineProps, ref } from 'vue'
 import { useButterfliesStore } from '@/stores/butterflies.js'
 import CounterWidget from './CounterWidget.vue'
+import ButterflyImage from './ButterflyImage.vue'
 
 const props = defineProps({
   id: Number,
 })
 
 const butterfliesStore = useButterfliesStore()
-const butterfly = ref(butterfliesStore.butterflies[props.id])
+const butterfly = ref(butterfliesStore.getButterfly(props.id))
 </script>
 
 <template>
   <div class="bcard border border-black border-1 rounded-3">
 
     <div class="bcard-body">
-      {{ butterfly.name }}
-      <img @click="butterfliesStore.increaseCount(id)" class="bimg" :src="butterfly.img" :alt="butterfly.name" />
+
+      <RouterLink :to="'/butterfly/' + butterfly.id">
+        {{ butterfly.name }}
+      </RouterLink>
+
+      <ButterflyImage @click="butterfliesStore.increaseCount(butterfly.id)"
+        :id="butterfly.id"
+        :img="butterfly.img"
+        :alt="butterfly.name"></ButterflyImage>
     </div>
 
     <CounterWidget :id="id"></CounterWidget>
@@ -24,12 +32,6 @@ const butterfly = ref(butterfliesStore.butterflies[props.id])
 </template>
 
 <style scoped>
-.bimg {
-  display: block;
-  width: 100%;
-  max-width: 200px;
-  height: 200px;
-}
 
 .bcard {
   display: block;

@@ -62,6 +62,7 @@ onMounted( buildReport )
 
 function copyReport(){
   navigator.clipboard.writeText(report.value)
+  navigator.
   alert("Report Copied!")
 }
 

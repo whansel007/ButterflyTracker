@@ -4,6 +4,7 @@ import { useButterfliesStore } from '@/stores/butterflies'
 import TrackerView from '@/views/TrackerView.vue'
 import ResultsView from '@/views/ResultsView.vue'
 import DetailsView from '@/views/DetailsView.vue'
+import ButterflyView from '@/views/ButterflyView.vue'
 import ListView from '@/views/ListView.vue'
 
 const router = createRouter({
@@ -12,6 +13,7 @@ const router = createRouter({
     {path : "/", component : TrackerView},
     {path : "/list", component : ListView},
     {path : "/details", component : DetailsView},
+    {path : "/butterfly/:id", component : ButterflyView},
     {path : "/result", component : ResultsView, meta: { needNonZeroCount : true}}
   ],
 })

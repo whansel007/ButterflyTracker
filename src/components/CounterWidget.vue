@@ -12,7 +12,7 @@
   })
 
   const count = computed(() => {
-    return butterfliesStore.butterflies[props.id].count
+    return butterfliesStore.getButterfly(props.id).count
   })
 
 </script>

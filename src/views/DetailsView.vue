@@ -1,7 +1,55 @@
 <script setup>
-import { useDetailsStore } from '@/stores/details'
+  import { ref } from 'vue';
+  import axios from 'axios';
+  import { useDetailsStore } from '@/stores/details'
 
-const detailsStore = useDetailsStore()
+  const location = ref("")
+  const weather = ref("")
+  const showWeather = ref(false)
+  const OPENWEATHER_KEY = import.meta.env.VITE_OPENWEATHER_KEY
+
+  function getLocation(){
+    if(!navigator.geolocation){
+      location.value = "Location not supported in this browser"
+      return
+    }
+
+    return new Promise( (resolve, reject) => {
+      navigator.geolocation.getCurrentPosition( (geolocation) => {
+        location.value = {
+          lat : geolocation.coords.latitude,
+          lon : geolocation.coords.longitude}
+        resolve()
+        },
+        (error) => {
+          location.value = "Encountered an error, try again later : " + error
+          reject()
+        },
+        { timeout: 10000, maximumAge: 60000 }
+      )
+    })
+  }
+  const detailsStore = useDetailsStore()
+
+  async function getCurrentWeather(){
+    await getLocation()
+    await getWeather()
+
+    showWeather.value = true
+  }
+
+  async function getWeather(){
+    const response = await axios.get('https://api.openweathermap.org/data/2.5/weather', {
+      params : {
+        lat: location.value.lat,
+        lon: location.value.lon,
+        appid: OPENWEATHER_KEY
+      }
+    })
+
+    weather.value = response.data
+  }
+
 </script>
 
 <template>
@@ -65,6 +113,14 @@ const detailsStore = useDetailsStore()
           </select>
         </div>
       </div>
+    </div>
+    <hr>
+
+    <button @click="getCurrentWeather">Get Weather With OpenWeather</button>
+    <div v-if="showWeather">
+      Longitude : {{ location.lon }} <br>
+      Latitude : {{ location.lat }} <br>
+      Weather : {{ weather.weather[0].main }} <br>
     </div>
   </div>
 </template>

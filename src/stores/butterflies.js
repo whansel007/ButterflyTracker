@@ -4,7 +4,6 @@ import { defineStore } from "pinia";
 export const useButterfliesStore = defineStore ('butterfliesStore' , () => {
   // States
   const butterflies = ref([])
-  const knownButterflyCount = computed( () => Object.keys(butterflies.value).length)
 
   function saveButterflies(){
     localStorage.setItem('butterflies', JSON.stringify(butterflies.value))
@@ -17,12 +16,12 @@ export const useButterfliesStore = defineStore ('butterfliesStore' , () => {
       butterflies.value = JSON.parse(loadedRaw)
     }
     else{
-      resetButterflies()
+      resetDatabase()
     }
   }
 
   function addButterfly(name, latinName = "not spesified"){
-    const id = knownButterflyCount.value
+    const id = getDatabaseButterflyCount()
 
     butterflies.value.push({
       id : id,
@@ -31,13 +30,15 @@ export const useButterfliesStore = defineStore ('butterfliesStore' , () => {
       img : "/butterfly/" + name.split(" ").join("") +  ".png",
       count : 0
     })
+
+    saveButterflies()
   }
 
   onMounted( () => {
     loadButterflies()
   })
 
-  function resetButterflies(){
+  function resetDatabase(){
     butterflies.value = []
     addButterfly("Unidentified")
     addButterfly("Common Mime", "Chilasa clytia clytia")
@@ -71,6 +72,13 @@ export const useButterfliesStore = defineStore ('butterfliesStore' , () => {
     return butterflies.value.reduce( (acc, b) => acc + b.count, 0)
   }
 
+  function getButterfly(id){
+    return butterflies.value.find( (b) => b.id == id)
+  }
+
+  function getDatabaseButterflyCount(){
+    return Object.keys(butterflies.value).length
+  }
 
   // Action
   function increaseCount(id){
@@ -93,5 +101,10 @@ export const useButterfliesStore = defineStore ('butterfliesStore' , () => {
     saveButterflies()
   }
 
-  return {butterflies, getTotalButterflyCount, increaseCount, decreaseCount, clearCount, resetAllCount}
+  function deleteButterfly(id){
+    butterflies.value = butterflies.value.filter( (b) => b.id != id)
+    saveButterflies()
+  }
+
+  return {butterflies, addButterfly, getButterfly, getTotalButterflyCount, increaseCount, decreaseCount, clearCount, resetAllCount, resetDatabase, deleteButterfly}
 })
