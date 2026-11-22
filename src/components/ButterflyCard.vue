@@ -25,12 +25,16 @@ const butterfly = ref(butterfliesStore.butterflies[props.id])
 
 <style scoped>
 .bimg {
-  width: 200px;
+  display: block;
+  width: 100%;
+  max-width: 200px;
   height: 200px;
 }
 
 .bcard {
-  display: inline-block;
+  display: block;
+  width: 100%;
+
   margin-top: 10px;
 }
 
