@@ -16,7 +16,7 @@ const butterfly = ref(butterfliesStore.butterflies[props.id])
 
     <div class="bcard-body">
       {{ butterfly.name }}
-      <img class="bimg" :src="butterfly.img" :alt="butterfly.name" />
+      <img @click="butterfliesStore.increaseCount(id)" class="bimg" :src="butterfly.img" :alt="butterfly.name" />
     </div>
 
     <CounterWidget :id="id"></CounterWidget>

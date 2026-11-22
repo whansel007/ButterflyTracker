@@ -14,7 +14,7 @@ const butterfliesStore = useButterfliesStore()
 
     <ul class="navbar-nav">
       <li class="nav-item">
-        <a class="nav-link" href="/">Tracker</a>
+        <a class="nav-link" href="/details">Details</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="/result">Result ({{ butterfliesStore.getTotalButterflyCount() }})</a>

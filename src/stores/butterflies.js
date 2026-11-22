@@ -11,7 +11,14 @@ export const useButterfliesStore = defineStore ('butterfliesStore' , () => {
   }
 
   function loadButterflies(){
-    butterflies.value = JSON.parse(localStorage.getItem('butterflies'))
+    const loadedRaw = localStorage.getItem('butterflies')
+
+    if(loadedRaw){
+      butterflies.value = JSON.parse(loadedRaw)
+    }
+    else{
+      resetButterflies()
+    }
   }
 
   function addButterfly(name, latinName = "not spesified"){
@@ -27,8 +34,9 @@ export const useButterfliesStore = defineStore ('butterfliesStore' , () => {
   }
 
   onMounted( () => {
-    resetButterflies()
+    loadButterflies()
   })
+
   function resetButterflies(){
     butterflies.value = []
     addButterfly("Unidentified")
