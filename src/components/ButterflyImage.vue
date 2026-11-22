@@ -3,7 +3,6 @@
 import { ref, defineProps} from 'vue';
 
 const props = defineProps({
-  id : Number,
   img : String,
   alt : Number
 })

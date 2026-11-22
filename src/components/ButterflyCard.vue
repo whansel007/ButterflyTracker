@@ -17,7 +17,7 @@ const butterfly = ref(butterfliesStore.getButterfly(props.id))
 
     <div class="bcard-body">
 
-      <RouterLink :to="'/butterfly/' + butterfly.id">
+      <RouterLink class="text-black" :to="'/butterfly/' + butterfly.id">
         {{ butterfly.name }}
       </RouterLink>
 

@@ -13,8 +13,7 @@ const newButterflyName = ref("")
 <template>
   <div class="container">
     <h1 class="text-center">Butterflies List</h1>
-    <p class="text-center">Delete or add butterflies to the database</p>
-
+    <p class="text-center">Delete or add butterflies to the options database</p>
     <div class="container-fluid gap-2 d-flex justify-content-center">
       <input type="text" v-model="newButterflyName" placeholder="Butterfly name">
       <button @click="butterfliesStore.addButterfly(newButterflyName)" class="btn btn-success text-light"> + </button>
@@ -37,7 +36,9 @@ const newButterflyName = ref("")
       <tbody>
         <tr v-for="b in butterfliesStore.butterflies" :key="b.id">
           <td>
-            {{ b.name }}
+            <RouterLink class="text-black" :to="'/butterfly/' + b.id">
+              {{ b.name }}
+            </RouterLink>
           </td>
           <td>
             <CounterWidget :id="b.id"></CounterWidget>
@@ -54,5 +55,4 @@ const newButterflyName = ref("")
 </template>
 
 <style scoped>
-
 </style>
