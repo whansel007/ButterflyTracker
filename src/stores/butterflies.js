@@ -14,7 +14,7 @@ export const useButterfliesStore = defineStore ('butterfliesStore' , () => {
       id : id,
       name : name,
       latinName : latinName,
-      img : "/" + name.split(" ").join("") +  ".png",
+      img : "/butterfly/" + name.split(" ").join("") +  ".png",
       count : 0
     })
   }

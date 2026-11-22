@@ -16,8 +16,13 @@ const filteredButterflies = computed( () => {
 </script>
 
 <template>
-  <div class="bheader">
-    <h1>Track Butterflies</h1>
+  <div class="row row-cols-2 row-cols-sm-3 row-cols-md-4">
+    <div class="col" v-for="b in filteredButterflies" :key="b.id">
+        <ButterflyCard :id="b.id"></ButterflyCard>
+    </div>
+  </div>
+
+  <div class="bg-success fixed-bottom text-light btm">
     <div class="filtergrid">
       <div class="p-1">
         Filter :
@@ -26,12 +31,6 @@ const filteredButterflies = computed( () => {
     </div>
   </div>
 
-
-<div class="row row-cols-2 row-cols-sm-3 row-cols-md-4">
-  <div class="col" v-for="b in filteredButterflies" :key="b.id">
-      <ButterflyCard :id="b.id"></ButterflyCard>
-  </div>
-</div>
 
 
 </template>
@@ -53,4 +52,11 @@ const filteredButterflies = computed( () => {
   grid-template-columns: auto 1fr;
 
 }
+
+.btm{
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+}
+
 </style>
