@@ -6,7 +6,14 @@ export const useButterfliesStore = defineStore ('butterfliesStore' , () => {
   const butterflies = ref([])
   const knownButterflyCount = computed( () => Object.keys(butterflies.value).length)
 
-  // Action
+  function saveButterflies(){
+    localStorage.setItem('butterflies', JSON.stringify(butterflies.value))
+  }
+
+  function loadButterflies(){
+    butterflies.value = JSON.parse(localStorage.getItem('butterflies'))
+  }
+
   function addButterfly(name, latinName = "not spesified"){
     const id = knownButterflyCount.value
 
@@ -20,6 +27,10 @@ export const useButterfliesStore = defineStore ('butterfliesStore' , () => {
   }
 
   onMounted( () => {
+    resetButterflies()
+  })
+  function resetButterflies(){
+    butterflies.value = []
     addButterfly("Unidentified")
     addButterfly("Common Mime", "Chilasa clytia clytia")
     addButterfly("Lime Butterfly", "Papilio demoleus malayanus")
@@ -44,19 +55,30 @@ export const useButterfliesStore = defineStore ('butterfliesStore' , () => {
     addButterfly("Tawny Coster", "Acraea violae")
     addButterfly("Leopard", "Phalanta phalantha phalantha")
     addButterfly("Grass Blues", "Lycaeninae spp.")
-  })
+  }
 
+
+  // Getters
+  function getTotalButterflyCount() {
+    return butterflies.value.reduce( (acc, b) => acc + b.count, 0)
+  }
+
+
+  // Action
   function increaseCount(id){
     butterflies.value.find( (b) => b.id == id).count += 1
+    saveButterflies()
   }
 
   function decreaseCount(id){
     butterflies.value.find( (b) => b.id == id).count -= 1
+    saveButterflies()
   }
 
   function clearCount(id){
     butterflies.value.find( (b) => b.id == id).count = 0
+    saveButterflies()
   }
 
-  return {butterflies, increaseCount, decreaseCount, clearCount}
+  return {butterflies, getTotalButterflyCount, increaseCount, decreaseCount, clearCount}
 })

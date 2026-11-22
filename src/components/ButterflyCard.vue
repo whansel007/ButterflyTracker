@@ -1,7 +1,7 @@
 <script setup>
 import { defineProps, ref } from 'vue'
-import Counter from './Counter.vue'
 import { useButterfliesStore } from '@/stores/butterflies.js'
+import CounterWidget from './CounterWidget.vue'
 
 const props = defineProps({
   id: Number,
@@ -19,7 +19,7 @@ const butterfly = ref(butterfliesStore.butterflies[props.id])
       <img class="bimg" :src="butterfly.img" :alt="butterfly.name" />
     </div>
 
-    <Counter :id="id"></Counter>
+    <CounterWidget :id="id"></CounterWidget>
   </div>
 </template>
 
