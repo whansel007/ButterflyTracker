@@ -16,9 +16,11 @@ const filteredButterflies = computed( () => {
 </script>
 
 <template>
-  <div class="row row-cols-2 row-cols-sm-3 row-cols-md-4">
-    <div class="col" v-for="b in filteredButterflies" :key="b.id">
-        <ButterflyCard :id="b.id"></ButterflyCard>
+  <div class="container p-0">
+    <div class="row row-cols-2 row-cols-sm-3 row-cols-md-3 row-cols-lg-6">
+      <div class="col" v-for="b in filteredButterflies" :key="b.id">
+          <ButterflyCard :id="b.id"></ButterflyCard>
+      </div>
     </div>
   </div>
 
