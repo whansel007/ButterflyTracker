@@ -88,5 +88,10 @@ export const useButterfliesStore = defineStore ('butterfliesStore' , () => {
     saveButterflies()
   }
 
-  return {butterflies, getTotalButterflyCount, increaseCount, decreaseCount, clearCount}
+  function resetAllCount(){
+    butterflies.value.map( (b) => b.count = 0)
+    saveButterflies()
+  }
+
+  return {butterflies, getTotalButterflyCount, increaseCount, decreaseCount, clearCount, resetAllCount}
 })

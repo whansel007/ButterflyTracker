@@ -21,7 +21,7 @@ router.beforeEach( (to, from) => {
 
   const butterfliesStore = useButterfliesStore()
   if(butterfliesStore.getTotalButterflyCount() <= 0){
-    alert("There is no butterflies tracked yet!")
+    alert("There is no butterflies tracked yet!" + from.path)
     router.push(from.path)
   }
 })
