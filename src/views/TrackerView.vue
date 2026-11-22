@@ -16,6 +16,15 @@ const filteredButterflies = computed( () => {
 </script>
 
 <template>
+  <div class="bg-success text-light filterbar">
+    <div class="filtergrid">
+      <div class="p-1">
+        Filter :
+      </div>
+      <input v-model="filter" type="text">
+    </div>
+  </div>
+
   <div class="container-fluid">
     <div class="row row-cols-2 row-cols-md-4 cards-grid">
       <div class="col" v-for="b in filteredButterflies" :key="b.id">
@@ -24,14 +33,6 @@ const filteredButterflies = computed( () => {
     </div>
   </div>
 
-  <div class="bg-success text-light btm">
-    <div class="filtergrid">
-      <div class="p-1">
-        Filter :
-      </div>
-      <input v-model="filter" type="text">
-    </div>
-  </div>
 
 
 </template>
@@ -54,16 +55,14 @@ const filteredButterflies = computed( () => {
 
 }
 
-.cards-grid {
-  padding-bottom: calc(70px + env(safe-area-inset-bottom));
+.filterbar{
+  padding: 10px;
+  display: flex;
+  justify-content: center;
 }
 
-.btm {
-  padding: 10px 10px calc(10px + env(safe-area-inset-bottom));
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
+.cards-grid {
+  padding-bottom: calc(70px + env(safe-area-inset-bottom));
 }
 
 </style>
