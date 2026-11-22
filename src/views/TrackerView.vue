@@ -9,6 +9,10 @@ const butterfliesStore = useButterfliesStore()
 
 const filter = ref("")
 
+function resetFilter(){
+  filter.value = ""
+}
+
 const filteredButterflies = computed( () => {
   return butterfliesStore.butterflies.filter( (b) => b.name.toLowerCase().includes(filter.value.toLowerCase()))
 })
@@ -22,6 +26,7 @@ const filteredButterflies = computed( () => {
         Filter :
       </div>
       <input v-model="filter" type="text">
+      <button @click="resetFilter" class="btn">❌</button>
     </div>
   </div>
 
@@ -32,8 +37,6 @@ const filteredButterflies = computed( () => {
       </div>
     </div>
   </div>
-
-
 
 </template>
 
@@ -51,7 +54,7 @@ const filteredButterflies = computed( () => {
 
   width: 80%;
 
-  grid-template-columns: auto 1fr;
+  grid-template-columns: auto 1fr auto;
 
 }
 

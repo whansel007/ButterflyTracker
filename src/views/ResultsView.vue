@@ -53,7 +53,9 @@ function buildReport(){
     report.value += b.name + ", " + b.count + "\n"
   }
 
-  report.value += "\nNotes:\n" + detailsStore.notes
+  if(detailsStore.notes){
+    report.value += "\nNotes:\n" + detailsStore.notes
+  }
 }
 
 onMounted( buildReport )
