@@ -1,4 +1,4 @@
-import { ref, computed, onMounted } from "vue";
+import { ref, onMounted } from "vue";
 import { defineStore } from "pinia";
 
 export const useButterfliesStore = defineStore ('butterfliesStore' , () => {
@@ -20,7 +20,7 @@ export const useButterfliesStore = defineStore ('butterfliesStore' , () => {
     }
   }
 
-  function addButterfly(name, latinName = "not spesified"){
+  function addButterfly(name, latinName = "not specified"){
     const id = getDatabaseButterflyCount()
 
     butterflies.value.push({
@@ -64,6 +64,10 @@ export const useButterfliesStore = defineStore ('butterfliesStore' , () => {
     addButterfly("Tawny Coster", "Acraea violae")
     addButterfly("Leopard", "Phalanta phalantha phalantha")
     addButterfly("Grass Blues", "Lycaeninae spp.")
+    addButterfly("Autumn Leaf", "Doleschallia bisaltide")
+    addButterfly("Common Tit", "Hypolycaena erylus")
+    addButterfly("Common Bluebottle", "Graphium sarpedon")
+    addButterfly("Chocolate Demon", "Ancistroides nigrita")
   }
 
 
