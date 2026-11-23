@@ -17,7 +17,7 @@ const butterfliesStore = useButterfliesStore()
         <RouterLink class="nav-link" to="/List">List</RouterLink>
       </li>
       <li class="nav-item">
-        <RouterLink class="nav-link" to="/details">Details</RouterLink>
+        <RouterLink class="nav-link" to="/details">Survey Details</RouterLink>
       </li>
       <li class="nav-item">
         <RouterLink class="nav-link" to="/result">Result ({{ butterfliesStore.getTotalButterflyCount() }})</RouterLink>

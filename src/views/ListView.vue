@@ -13,7 +13,8 @@ const newButterflyName = ref("")
 <template>
   <div class="container">
     <h1 class="text-center">Butterflies List</h1>
-    <p class="text-center">Delete or add butterflies to the options database</p>
+    <pre class="text-center">Delete or add butterflies to the local database
+    (only on your phone) </pre>
     <div class="container-fluid gap-2 d-flex justify-content-center">
       <input type="text" v-model="newButterflyName" placeholder="Butterfly name">
       <button @click="butterfliesStore.addButterfly(newButterflyName)" class="btn btn-success text-light"> + </button>

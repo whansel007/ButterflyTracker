@@ -23,7 +23,7 @@ const filteredButterflies = computed( () => {
   <div class="bg-success text-light filterbar">
     <div class="filtergrid">
       <div class="p-1">
-        Filter :
+        Filter:
       </div>
       <input v-model="filter" type="text">
       <button @click="resetFilter" class="btn">❌</button>
