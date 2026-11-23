@@ -18,7 +18,7 @@ Delete or add butterflies
 to the local database on your phone</pre>
     <div class="container-fluid gap-2 d-flex justify-content-center">
       <input type="text" v-model="newButterflyName" placeholder="Butterfly name">
-      <button @click="butterfliesStore.addButterfly(newButterflyName)" class="btn btn-success text-light"> + </button>
+      <button @click="() => { butterfliesStore.addButterfly(newButterflyName); newButterflyName = '' }" class="btn btn-success text-light"> + </button>
     </div>
     <br>
     <table class="table table-secondary table-striped">
