@@ -6,11 +6,13 @@ import ResultsView from '@/views/ResultsView.vue'
 import DetailsView from '@/views/DetailsView.vue'
 import ButterflyView from '@/views/ButterflyView.vue'
 import ListView from '@/views/ListView.vue'
+import ExperimentView from '@/views/ExperimentView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {path : "/", component : TrackerView},
+    {path : "/experiment", component : ExperimentView},
     {path : "/list", component : ListView},
     {path : "/details", component : DetailsView},
     {path : "/butterfly/:id", component : ButterflyView},

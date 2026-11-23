@@ -6,6 +6,7 @@
   const location = ref("")
   const weather = ref("")
   const showWeather = ref(false)
+  const loadingText = ref("")
   const OPENWEATHER_KEY = import.meta.env.VITE_OPENWEATHER_KEY
 
   function getLocation(){
@@ -32,6 +33,9 @@
   const detailsStore = useDetailsStore()
 
   async function getCurrentWeather(){
+    loadingText.value = "Loading..."
+    showWeather.value = false
+
     await getLocation()
     await getWeather()
 
@@ -39,15 +43,20 @@
   }
 
   async function getWeather(){
-    const response = await axios.get('https://api.openweathermap.org/data/2.5/weather', {
-      params : {
-        lat: location.value.lat,
-        lon: location.value.lon,
-        appid: OPENWEATHER_KEY
-      }
-    })
+    try{
+      const response = await axios.get('https://api.openweathermap.org/data/2.5/weather', {
+        params : {
+          lat: location.value.lat,
+          lon: location.value.lon,
+          appid: OPENWEATHER_KEY
+        }
+      })
 
-    weather.value = response.data
+      weather.value = response.data
+    } catch (e) {
+      console.log(e)
+      loadingText.value = "Sorry there was an error! Pls try again later..."
+    }
   }
 
 </script>
@@ -121,6 +130,9 @@
       Longitude : {{ location.lon }} <br>
       Latitude : {{ location.lat }} <br>
       Weather : {{ weather.weather[0].main }} <br>
+    </div>
+    <div v-else>
+      {{ loadingText }}
     </div>
   </div>
 </template>

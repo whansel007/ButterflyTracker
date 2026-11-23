@@ -1,6 +1,7 @@
 <script setup>
 
-import { ref, defineEmits } from 'vue';
+import { ref  } from 'vue';
+import { defineEmits } from 'vue';
 
 const emit = defineEmits(['delete'])
 
