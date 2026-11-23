@@ -3,11 +3,11 @@ import { defineStore } from "pinia";
 
 export const useDetailsStore = defineStore('details', () => {
   // States
-  const date = ref("")
-  const time = ref("")
-  const weather = ref("")
-  const transect = ref("")
-  const confidence = ref("")
+  const date = ref("2026-11-22")
+  const time = ref("09:00")
+  const weather = ref("Sunny")
+  const transect = ref("1 (Fort Canning Park)")
+  const confidence = ref("1")
   const notes = ref("")
 
   function saveDetails(){
