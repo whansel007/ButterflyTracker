@@ -43,7 +43,8 @@ function buildReport(){
   report.value += "Transect " + detailsStore.transect + "\n"
   report.value += detailsStore.date.split("-").reverse().join("-") + " | "
   report.value += to12Clock(toMinutes(detailsStore.time)) + " - "
-  report.value += to12Clock(toMinutes(detailsStore.time) + 20) + "\n\n"
+  report.value += to12Clock(toMinutes(detailsStore.time) + 20) + "\n"
+  report.value += "Confidence : " + detailsStore.confidence + "\n\n"
 
   for(const b of butterfliesStore.butterflies){
     if(b.count <= 0){

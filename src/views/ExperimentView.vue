@@ -15,22 +15,31 @@ arr.sort( (a , b) => {
   return 0
 })
 
+const reveal = ref(false)
+
 </script>
 
 <template>
 
   <table>
-    <tr>
-      <th>Hello</th>
-      <th>There</th>
-    </tr>
-    <tr>
-      <td>How</td>
-      <td>Are</td>
-    </tr>
+    <thead>
+      <tr>
+        <th>Hello</th>
+        <th>There</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>How</td>
+        <td>Are</td>
+      </tr>
+    </tbody>
   </table>
   {{ arr }}
-  <button @click="counter++"> {{ counter }}</button>
+  <button @click="counter++; reveal = !reveal"> {{ counter }}</button>
+  <br>
+
+  <img v-if="reveal" src="https://c.tenor.com/QNPLViwKh-IAAAAC/rick-astley-never-gonna-give-you-up.gif" alt="">
 </template>
 
 <style scoped>
